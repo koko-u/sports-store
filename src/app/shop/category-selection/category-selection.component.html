@@ -1,0 +1,20 @@
+<div class="d-grid gap-1 mb-1">
+  <button class="btn btn-outline-primary"
+          [class.active]="nonSelectedCategories$ | async"
+          (click)="clearCategory()"
+  >
+    Home
+  </button>
+</div>
+
+<ng-container *ngFor="let categoryWithActivity of categories">
+  <div class="d-grid gap-1 mb-1">
+    <button class="btn btn-outline-primary"
+            [class.active]="categoryWithActivity.active | async"
+            (click)="changeCategory(categoryWithActivity.category)"
+    >
+      {{ categoryWithActivity.category }}
+    </button>
+  </div>
+</ng-container>
+

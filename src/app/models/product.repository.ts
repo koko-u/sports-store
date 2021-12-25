@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core'
 import { Product } from './product.model'
 import { StaticDatasource } from './static.datasource'
 import { map } from 'rxjs'
+import { Category } from './category.model'
 
 @Injectable()
 export class ProductRepository {
   private _products: Product[] = []
-  private _categories: string[] = []
+  private _categories: Category[] = []
 
   constructor(private dataSource: StaticDatasource) {
     dataSource.getProducts().subscribe((products) => {
@@ -15,7 +16,7 @@ export class ProductRepository {
     })
   }
 
-  getProducts(category?: string): Product[] {
+  getProducts(category?: Category): Product[] {
     if (category) {
       return this._products.filter((p) => p.category === category)
     } else {
@@ -27,7 +28,7 @@ export class ProductRepository {
     return this._products.find((p) => p.id === id)
   }
 
-  getCategories(): string[] {
+  getCategories(): Category[] {
     return this._categories
   }
 }

@@ -1,22 +1,45 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+} from '@angular/core'
 import { ProductRepository } from '../models/product.repository'
 import { Product } from '../models/product.model'
+import { Category } from '../models/category.model'
+import { SelectedCategoryService } from './selected-category.service'
+import { map, Observable, Subscription } from 'rxjs'
 
 @Component({
   selector: 'ss-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [SelectedCategoryService],
 })
 export class ShopComponent implements OnInit {
-  get products(): Product[] {
-    return this.productRepository.getProducts()
-  }
-  get categories(): string[] {
-    return this.productRepository.getCategories()
+  private _products$: Observable<Product[]> | undefined
+  get products$(): Observable<Product[]> {
+    if (this._products$ === undefined) throw new Error()
+    return this._products$
   }
 
-  constructor(private productRepository: ProductRepository) {}
+  private _selectedCategory: Category | undefined
 
-  ngOnInit(): void {}
+  constructor(
+    private productRepository: ProductRepository,
+    private selectedCategory: SelectedCategoryService
+  ) {}
+
+  ngOnInit(): void {
+    this._products$ = this.selectedCategory.selectedCategory$.pipe(
+      map((selectedCategory) => {
+        if (selectedCategory) {
+          return this.productRepository.getProducts(selectedCategory)
+        } else {
+          return this.productRepository.getProducts()
+        }
+      })
+    )
+  }
 }

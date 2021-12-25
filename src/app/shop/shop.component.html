@@ -4,12 +4,26 @@
       <a class="navbar-brand text-white">SPORTS STORE</a>
     </div>
   </div>
-  <div class="row text-white">
-    <div class="col-3 bg-info p-2">
-      {{ categories.length }} Categories
+  <div class="row">
+    <div class="col-3 p-2">
+      <ss-category-selection></ss-category-selection>
     </div>
-    <div class="col-9 bg-success p-2">
-      {{ products.length }} Products
+    <div class="col-9 p-2">
+      <ng-container  *ngFor="let product of products$ | async">
+        <div class="card m-1 p-1 bg-light">
+          <h4 class="card-header">
+            {{ product.name }}
+            <span class="badge rounded-pill bg-primary float-end">
+              {{ product.price | currency:'USD':'symbol':'2.2-2' }}
+            </span>
+          </h4>
+          <div class="card-body bg-white p-1">
+            <div class="card-text">
+              {{ product.description }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
