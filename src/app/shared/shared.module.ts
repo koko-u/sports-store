@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core'
-import { NotPipe } from './not.pipe'
+import { NotPipe } from './pipes/not.pipe'
+import { UsCurrencyPipe } from './pipes/us-currency.pipe'
 
 @NgModule({
-  declarations: [NotPipe],
+  declarations: [NotPipe, UsCurrencyPipe],
   imports: [],
-  exports: [NotPipe],
+  exports: [NotPipe, UsCurrencyPipe],
 })
 export class SharedModule {}

@@ -13,6 +13,10 @@ import { SelectedCategoryService } from './selected-category.service'
 import { CartSummaryComponent } from './cart-summary/cart-summary.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { SharedModule } from '../shared/shared.module'
+import { ProductItemComponent } from './product-list/product-item/product-item.component'
+import { CartDetailComponent } from './cart-detail/cart-detail.component'
+import { CheckoutComponent } from './checkout/checkout.component'
+import { RouterModule } from '@angular/router'
 
 @NgModule({
   declarations: [
@@ -21,6 +25,9 @@ import { SharedModule } from '../shared/shared.module'
     ProductListComponent,
     PaginationComponent,
     CartSummaryComponent,
+    ProductItemComponent,
+    CartDetailComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,
@@ -28,8 +35,9 @@ import { SharedModule } from '../shared/shared.module'
     ReactiveFormsModule,
     FontAwesomeModule,
     SharedModule,
+    RouterModule,
   ],
-  exports: [ShopComponent],
+  exports: [ShopComponent, CartDetailComponent, CheckoutComponent],
   providers: [SelectedCategoryService],
 })
 export class ShopModule {}

@@ -3,7 +3,7 @@
     Your cart:
     <span *ngIf="anyCartItem$ | async;else empty">
       {{ itemCount$ | async }} item(s)
-      {{ cartPrice$ | async | currency:'USD':'symbol':'2.2-2' }}
+      {{ cartPrice$ | async | usCurrency }}
     </span>
     <ng-template #empty>
       (empty)
@@ -12,6 +12,7 @@
   <button
     class="btn btn-sm gb-dark text-white"
     [disabled]="anyCartItem$ | not | async"
+    routerLink="/cart"
   >
     <fa-icon [icon]="faShoppingCart"></fa-icon>
   </button>
