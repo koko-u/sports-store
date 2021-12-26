@@ -1,5 +1,81 @@
-<div>
-  <h3 class="bg-info p-1 text-white">
-    Cart Detail Component
-  </h3>
+<div class="container-fluid">
+  <div class="row bg-dark">
+    <div class="col">
+      <a class="navbar-brand text-white">SPORTS STORE</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mt-2">
+      <h2 class="text-center">Your Cart</h2>
+
+      <table class="table table-bordered table-striped p-2">
+        <thead>
+        <tr>
+          <th>Quantity</th>
+          <th>Product</th>
+          <th class="text-end">Price</th>
+          <th class="text-end">Subtotal</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="isEmptyCart$ | async;else notEmpty">
+          <td colspan="4" class="text-center">
+            Your cart is empty
+          </td>
+        </tr>
+        <ng-template #notEmpty>
+          <tr *ngFor="let line of cartLines$ | async">
+            <td>
+              <input type="number"
+                     class="form-control form-control-sm"
+                     [ngStyle]="{width: '5em'}"
+                     [value]="line.quantity"
+                     (change)="updateQuantity(line, $event)"
+              >
+            </td>
+            <td>{{ line.product.name }}</td>
+            <td class="text-end">
+              {{ line.product.price | usCurrency }}
+            </td>
+            <td class="text-end">
+              {{ line.product.price * line.quantity | usCurrency}}
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-danger"
+                      (click)="removeLine(line)"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+        </tbody>
+        <tfoot>
+        <tr>
+          <td colspan="3" class="text-end">Total:</td>
+          <td class="text-end">
+            {{ cartPrice$ | async | usCurrency }}
+          </td>
+        </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="text-center">
+        <button class="btn btn-info m-1"
+                routerLink="/shopping"
+        >
+          Continue Shopping
+        </button>
+        <button class="btn btn-primary m-1"
+                routerLink="/checkout"
+                [disabled]="isEmptyCart$ | async"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
