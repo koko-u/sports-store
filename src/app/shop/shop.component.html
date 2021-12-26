@@ -1,7 +1,10 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="col bg-dark">
+  <div class="row bg-dark">
+    <div class="col">
       <a class="navbar-brand text-white">SPORTS STORE</a>
+    </div>
+    <div class="col-auto py-1">
+      <ss-cart-summary></ss-cart-summary>
     </div>
   </div>
   <div class="row">
@@ -10,7 +13,7 @@
     </div>
     <div class="col-9 p-2">
       <ss-product-list></ss-product-list>
-      <span *ssCounter="let page of five;let a = active" >[page: {{ page }}, active: {{a}}]</span>
+<!--      <span *ssCounter="let page of five;let a = active" >[page: {{ page }}, active: {{a}}]</span>-->
     </div>
   </div>
 </div>

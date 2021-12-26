@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core'
-import { Product } from './product.model'
+import { Product } from '../models/product.model'
 import { StaticDatasource } from './static.datasource'
-import { map } from 'rxjs'
-import { Category } from './category.model'
+import { Category } from '../models/category.model'
 
 @Injectable()
 export class ProductRepository {

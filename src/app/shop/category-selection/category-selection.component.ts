@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
 import { Category } from '../../models/category.model'
-import { ProductRepository } from '../../models/product.repository'
+import { ProductRepository } from '../../repositories/product.repository'
 import { SelectedCategoryService } from '../selected-category.service'
 import { map, Observable } from 'rxjs'
 

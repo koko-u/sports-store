@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
 import { combineLatest, map, Observable, tap } from 'rxjs'
 import { Product } from '../../models/product.model'
-import { ProductRepository } from '../../models/product.repository'
+import { ProductRepository } from '../../repositories/product.repository'
 import { SelectedCategoryService } from '../selected-category.service'
 import { PaginationService } from './pagination/pagination.service'
 

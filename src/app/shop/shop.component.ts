@@ -6,10 +6,7 @@ import { SelectedCategoryService } from './selected-category.service'
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SelectedCategoryService],
 })
 export class ShopComponent {
-  five = 5
-
   constructor() {}
 }
