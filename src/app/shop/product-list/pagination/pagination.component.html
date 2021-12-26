@@ -1,0 +1,25 @@
+<div class="d-flex flex-row justify-content-between m-1">
+  <div [formGroup]="pageSelection">
+    <select class="form-select" formControlName="perPage">
+      <option *ngFor="let page of pageOptions" [value]="page">{{ page }} per Page</option>
+    </select>
+  </div>
+
+  <div class="btn-group">
+    <ng-container *ngFor="let pageNumber of pageNumbers$ | async">
+      <input type="radio"
+             class="btn-check"
+             id="btnRadio{{ pageNumber.num }}"
+             autocomplete="off"
+             [checked]="pageNumber.current"
+             (click)="changePage(pageNumber.num)"
+      >
+      <label class="btn btn-outline-primary"
+             for="btnRadio{{ pageNumber.num }}"
+      >
+        {{ pageNumber.num }}
+      </label>
+    </ng-container>
+  </div>
+
+</div>
