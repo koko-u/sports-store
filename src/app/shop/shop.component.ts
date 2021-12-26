@@ -9,5 +9,7 @@ import { SelectedCategoryService } from './selected-category.service'
   providers: [SelectedCategoryService],
 })
 export class ShopComponent {
+  five = 5
+
   constructor() {}
 }

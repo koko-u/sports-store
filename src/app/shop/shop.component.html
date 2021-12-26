@@ -10,6 +10,7 @@
     </div>
     <div class="col-9 p-2">
       <ss-product-list></ss-product-list>
+      <span *ssCounter="let page of five;let a = active" >[page: {{ page }}, active: {{a}}]</span>
     </div>
   </div>
 </div>
